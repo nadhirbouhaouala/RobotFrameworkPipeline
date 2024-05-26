@@ -6,7 +6,7 @@ ${URL}    https://form.jotform.com/241263471608354
 
 *** Test Cases ***
 Scenario: TC_001 - Tester les champs requis
-    Open Browser    ${URL}    headless=true 
+    Open Browser    ${URL}    headless=false 
     Fill Text    xpath=//input[@id='input_7']    captcha
     Click    xpath=//button[@id='input_16']
     ${page_source}=    Get Page Source
