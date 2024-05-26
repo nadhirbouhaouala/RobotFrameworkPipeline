@@ -49,6 +49,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      
+    - name: Verifier le contenu du dossier output
+      run: ls output
 
     - name: Deploy to GitHub Pages
       env:
