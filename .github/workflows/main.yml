@@ -32,14 +32,14 @@ jobs:
       run: sudo apt-get install xvfb
 
     - name: Run Robot Framework *.robot with xvfb
-      run: xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' robot -d output *.robot
+      run: xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' robot *.robot
 
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v2
       with:
         name: robot-results
-        path: output/
+        path: report.html # Robot Framework report, si non *.html
 
   deploy:
     needs: test
@@ -50,8 +50,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       
-    - name: Verifier le contenu du dossier output
-      run: ls output
+    - name: Verifier le contenu du dossier 
+      run: ls
 
     - name: Deploy to GitHub Pages
       env:
@@ -62,7 +62,6 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
         git fetch origin
         git checkout -b gh-pages
-        cp -r output/* .
         git add .
         git commit -m "Deploy report to GitHub Pages"
         git push origin gh-pages --force
