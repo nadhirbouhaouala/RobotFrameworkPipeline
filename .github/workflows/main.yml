@@ -62,7 +62,6 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
         git fetch origin
         git checkout -b gh-pages
-        cp -r * .
         git add .
         git commit -m "Deploy report to GitHub Pages"
         git push origin gh-pages --force
