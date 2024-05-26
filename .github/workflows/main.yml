@@ -32,7 +32,7 @@ jobs:
       run: sudo apt-get install xvfb
 
     - name: Run Robot Framework *.robot with xvfb
-      run: xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' robot -d output tests
+      run: xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' robot -d output *.robot
 
     - name: Upload test results
       if: always()
