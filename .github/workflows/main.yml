@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: robot-results
-        path: report.html # Robot Framework report, si non *.html
+        path: . # Modifiez le chemin selon les fichiers que vous souhaitez conserver
 
   deploy:
     needs: test
@@ -52,6 +52,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: robot-results
       
     - name: Verifier le contenu du dossier 
       run: ls
