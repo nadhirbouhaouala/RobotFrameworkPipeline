@@ -39,7 +39,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: robot-results
-        path: *.html
+        path: report.html # Robot Framework report, si non *.html
 
   deploy:
     needs: test
