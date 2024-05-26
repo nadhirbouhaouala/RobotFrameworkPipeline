@@ -27,9 +27,14 @@ jobs:
         pip install robotframework
         pip install robotframework-browser
         rfbrowser init
+        # Ensure playwright browsers are installed
+        python -m playwright install
 
-    - name: Run Robot Framework tests
-      run: robot -d output *.robot
+    - name: Install xvfb
+      run: sudo apt-get install xvfb
+
+    - name: Run Robot Framework *.robot with xvfb
+      run: xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' robot -d output tests
 
     - name: Upload test results
       if: always()
